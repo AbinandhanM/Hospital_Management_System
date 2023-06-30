@@ -25,7 +25,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while  adding patient to the database");
             }
             return null;
         }
@@ -44,7 +44,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while  Deleting patient from the database");
             }
             return null;
         }
@@ -58,7 +58,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while fetching  patient from the database");
             }
             return null;
         }
@@ -73,7 +73,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while fetching patient from the database");
             }
             return null;
         }
@@ -82,11 +82,11 @@ namespace HospitalManagementSystem.Services
         {
             try
             {
-                var patient = _context.Patients.FirstOrDefault(u => u.PatientId == item.PatientId); ;
+                var patient = _context.Patients.FirstOrDefault(u => u.PatientId == item.PatientId);
                 if (patient != null)
                 {
-                    patient.EmailId = item.EmailId != null ? item.EmailId : patient.EmailId;
-                    patient.PhoneNumber = item.PhoneNumber != null ? item.PhoneNumber : patient.PhoneNumber;
+                    patient.EmailId = item.EmailId ?? patient.EmailId;
+                    patient.PhoneNumber = item.PhoneNumber ?? patient.PhoneNumber;
 
                     await _context.SaveChangesAsync();
                     return patient;
@@ -94,9 +94,10 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while updating patient from the database");
             }
             return null;
+
         }
     }
 }

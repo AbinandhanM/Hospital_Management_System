@@ -23,7 +23,7 @@ namespace HospitalManagementSystem.Context
             modelBuilder.Entity<Patient>().Property(i => i.PatientId).ValueGeneratedNever();
             modelBuilder.Entity<Doctor>().Property(i => i.DoctorId).ValueGeneratedNever();
             modelBuilder.Entity<Admin>().Property(i => i.AdminId).ValueGeneratedNever();
-           
+           ;
         }
 
     }

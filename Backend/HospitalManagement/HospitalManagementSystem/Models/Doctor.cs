@@ -10,7 +10,7 @@ namespace HospitalManagementSystem.Models
         public int DoctorId { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public User? users { get; set; }
+        public User? Users { get; set; }
 
 
         [Required(ErrorMessage = "Name Required.")]

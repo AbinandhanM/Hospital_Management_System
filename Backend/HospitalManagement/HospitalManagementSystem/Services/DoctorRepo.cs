@@ -83,22 +83,23 @@ namespace HospitalManagementSystem.Services
         {
             try
             {
-                var doctor = _context.Doctors.FirstOrDefault(u => u.DoctorId == item.DoctorId); ;
+                var doctor = _context.Doctors.FirstOrDefault(u => u.DoctorId == item.DoctorId);
                 if (doctor != null)
                 {
-                    doctor.Status = item.Status != null ? item.Status : doctor.Status;
-                    doctor.EmailId = item.EmailId != null ? item.EmailId : doctor.EmailId;
-                    doctor.Specialization = item.Specialization != null ? item.Specialization : doctor.Specialization;
-                    doctor.Experience = item.Experience != null ? item.Experience : doctor.Experience;
+                    doctor.Status = item.Status ?? doctor.Status;
+                    doctor.EmailId = item.EmailId ?? doctor.EmailId;
+                    doctor.Specialization = item.Specialization ?? doctor.Specialization;
+                    doctor.Experience = item.Experience ?? doctor.Experience;
                     await _context.SaveChangesAsync();
                     return doctor;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while Updating doctors to the database");
+                _logger.LogError(ex, "An error occurred while updating doctors to the database");
             }
             return null;
+
         }
     }
 }

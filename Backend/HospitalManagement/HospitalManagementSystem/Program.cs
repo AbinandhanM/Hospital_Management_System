@@ -1,4 +1,7 @@
 using HospitalManagementSystem.Context;
+using HospitalManagementSystem.Interfaces;
+using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -33,12 +36,19 @@ builder.Services.AddSwaggerGen(c => {
                                      Id = "Bearer"
                                  }
                              },
-                             new string[] {}
+                             Array.Empty<string>()
                      }
                  });
 });
 
 builder.Services.AddDbContext<HospitalContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("myConn")));
+builder.Services.AddScoped<IRepo<int, User>, UserRepo>();
+builder.Services.AddScoped<IRepo<int, Admin>, AdminRepo>();
+builder.Services.AddScoped<IRepo<int, Patient>, PatientRepo>();
+builder.Services.AddScoped<IRepo<int, Doctor>, DoctorRepo>();
+builder.Services.AddScoped<IPasswordGenerate, PasswordGenerateService>();
+builder.Services.AddScoped<IManageUser, ManagerUserService>();
+builder.Services.AddScoped<ITokenGenerate, TokenGenerateService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
@@ -52,6 +62,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
      };
  });
 
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy("AngularCORS", options =>
+    {
+        options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -62,6 +80,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthentication();
+app.UseCors("AngularCORS");
 
 app.UseAuthorization();
 

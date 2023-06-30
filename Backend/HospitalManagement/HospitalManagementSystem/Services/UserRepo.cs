@@ -26,7 +26,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while  adding user from the database");
             }
             return null;
         }
@@ -45,7 +45,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while deleting user from the database");
             }
             return null;
         }
@@ -59,7 +59,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while fetching user from the database");
             }
             return null;
         }
@@ -74,7 +74,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "An error occurred while fetching users from the database");
             }
             return null;
         }

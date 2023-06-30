@@ -10,7 +10,7 @@ namespace HospitalManagementSystem.Services
     {
         private readonly HospitalContext _context;
         private readonly ILogger<UserRepo> _logger;
-        private HospitalContext userContext;
+       
 
         public AdminRepo(HospitalContext hospitalContext, ILogger<UserRepo> logger)
         {
