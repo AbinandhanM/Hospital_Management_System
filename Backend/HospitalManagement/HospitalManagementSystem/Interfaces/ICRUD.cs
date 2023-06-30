@@ -2,7 +2,7 @@
 
 namespace HospitalManagementSystem.Interfaces
 {
-    public interface IApprove
+    public interface ICRUD
     {
         public Task<Doctor> Approval(int DoctorId);
     }

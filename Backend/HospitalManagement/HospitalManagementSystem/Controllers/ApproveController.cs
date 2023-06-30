@@ -12,9 +12,9 @@ namespace HospitalManagementSystem.Controllers
     [EnableCors("AngularCORS")]
     public class ApproveController : ControllerBase
     {
-        private IApprove _service;
+        private ICRUD _service;
 
-        public ApproveController(IApprove service)
+        public ApproveController(ICRUD service)
         {
             _service = service;
         }

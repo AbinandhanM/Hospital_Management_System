@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.Services
 {
-    public class ApproveService : IApprove
+    public class ApproveService : ICRUD
     {
         private readonly IRepo<int, Doctor> _doctorRepo;
         private readonly HospitalContext _context;
