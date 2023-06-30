@@ -51,6 +51,7 @@ builder.Services.AddScoped<IRepo<int, Doctor>, DoctorRepo>();
 builder.Services.AddScoped<IPasswordGenerate, PasswordGenerateService>();
 builder.Services.AddScoped<IManageUser, ManagerUserService>();
 builder.Services.AddScoped<ITokenGenerate, TokenGenerateService>();
+builder.Services.AddScoped<IApprove, ApproveService>();
 
 
 

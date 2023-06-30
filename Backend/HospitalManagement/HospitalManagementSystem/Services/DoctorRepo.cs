@@ -53,7 +53,7 @@ namespace HospitalManagementSystem.Services
         {
             try
             {
-                var doctor = await _context.Doctors.Include(i => i.DoctorId).FirstOrDefaultAsync(i => i.DoctorId == key);
+                var doctor = await _context.Doctors.Include(d=>d.Users).FirstOrDefaultAsync(i => i.DoctorId == key);
                 return doctor;
             }
             catch (Exception ex)

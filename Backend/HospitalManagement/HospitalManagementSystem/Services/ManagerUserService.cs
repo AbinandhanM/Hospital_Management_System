@@ -30,7 +30,7 @@ namespace HospitalManagementSystem.Services
             _passwordService = passwordService;
             _tokenService = tokenService;
         }
-
+         
         public async Task<UserDTO> AdminRegister(AdminRegisterDTO admin)
         {
             UserDTO user = null;
