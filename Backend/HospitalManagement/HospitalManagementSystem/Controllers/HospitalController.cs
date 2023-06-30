@@ -2,13 +2,15 @@
 using HospitalManagementSystem.Models;
 using HospitalManagementSystem.Models.DTO;
 using HospitalManagementSystem.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+    [EnableCors("AngularCORS")]
     public class HospitalController : ControllerBase
     {
         private readonly IManageUser _manageUser;

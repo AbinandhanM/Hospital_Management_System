@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20230630075635_init")]
+    [Migration("20230630135130_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,12 +47,7 @@ namespace HospitalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("AdminId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Admins");
                 });
@@ -88,12 +83,7 @@ namespace HospitalManagementSystem.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("DoctorId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Doctors");
                 });
@@ -104,7 +94,6 @@ namespace HospitalManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BloodGroup")
@@ -130,12 +119,7 @@ namespace HospitalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("PatientId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Patients");
                 });
@@ -166,7 +150,7 @@ namespace HospitalManagementSystem.Migrations
                 {
                     b.HasOne("HospitalManagementSystem.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -175,20 +159,20 @@ namespace HospitalManagementSystem.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.Models.Doctor", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.Models.User", "users")
+                    b.HasOne("HospitalManagementSystem.Models.User", "Users")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("users");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.Patient", b =>
                 {
                     b.HasOne("HospitalManagementSystem.Models.User", "Users")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

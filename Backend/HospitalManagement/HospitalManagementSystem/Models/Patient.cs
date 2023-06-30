@@ -8,8 +8,7 @@ namespace HospitalManagementSystem.Models
     {
         [Key]
         public int PatientId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("PatientId")]
         public User? Users { get; set; }
 
 
@@ -32,13 +31,12 @@ namespace HospitalManagementSystem.Models
 
         public string? BloodGroup { get; set; }
 
-        [Required(ErrorMessage = "Address required")]
+        [Required(ErrorMessage = "Email Required")]
         [EmailAddress(ErrorMessage = "Invalid Address")]
         public string? EmailId { get; set; }
 
 
-        [Required(ErrorMessage = "Email Required")]
-        [EmailAddress(ErrorMessage = "Invalid Address")]
+       
         public string? Address { get; set; }
 
     }

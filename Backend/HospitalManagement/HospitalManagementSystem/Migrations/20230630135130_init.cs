@@ -29,7 +29,6 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -40,8 +39,8 @@ namespace HospitalManagementSystem.Migrations
                 {
                     table.PrimaryKey("PK_Admins", x => x.AdminId);
                     table.ForeignKey(
-                        name: "FK_Admins_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Admins_Users_AdminId",
+                        column: x => x.AdminId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -52,7 +51,6 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     DoctorId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -65,8 +63,8 @@ namespace HospitalManagementSystem.Migrations
                 {
                     table.PrimaryKey("PK_Doctors", x => x.DoctorId);
                     table.ForeignKey(
-                        name: "FK_Doctors_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Doctors_Users_DoctorId",
+                        column: x => x.DoctorId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -77,40 +75,24 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BloodGroup = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.PatientId);
                     table.ForeignKey(
-                        name: "FK_Patients_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Patients_Users_PatientId",
+                        column: x => x.PatientId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Admins_UserId",
-                table: "Admins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Doctors_UserId",
-                table: "Doctors",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patients_UserId",
-                table: "Patients",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

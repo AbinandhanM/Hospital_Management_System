@@ -8,8 +8,7 @@ namespace HospitalManagementSystem.Models
     {
         [Key]
         public int DoctorId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("DoctorId")]
         public User? Users { get; set; }
 
 

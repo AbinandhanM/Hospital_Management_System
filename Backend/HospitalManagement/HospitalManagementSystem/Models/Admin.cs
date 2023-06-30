@@ -7,8 +7,7 @@ namespace HospitalManagementSystem.Models
     {
         [Key]
         public int AdminId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        [ForeignKey("AdminId")]
         public User? User { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]

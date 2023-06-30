@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -36,11 +37,12 @@ builder.Services.AddSwaggerGen(c => {
                                      Id = "Bearer"
                                  }
                              },
-                             Array.Empty<string>()
+                             new string[] {}
                      }
                  });
 });
 
+//User Created Services
 builder.Services.AddDbContext<HospitalContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("myConn")));
 builder.Services.AddScoped<IRepo<int, User>, UserRepo>();
 builder.Services.AddScoped<IRepo<int, Admin>, AdminRepo>();
@@ -50,17 +52,21 @@ builder.Services.AddScoped<IPasswordGenerate, PasswordGenerateService>();
 builder.Services.AddScoped<IManageUser, ManagerUserService>();
 builder.Services.AddScoped<ITokenGenerate, TokenGenerateService>();
 
+
+
+
+//ended 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
- {
-     options.TokenValidationParameters = new TokenValidationParameters
-     {
-         ValidateIssuerSigningKey = true,
-         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
-         ValidateIssuer = false,
-         ValidateAudience = false
-     };
- });
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 builder.Services.AddCors(opts =>
 {
@@ -81,7 +87,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseCors("AngularCORS");
-
 app.UseAuthorization();
 
 app.MapControllers();

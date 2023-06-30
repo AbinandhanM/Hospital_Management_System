@@ -1,5 +1,6 @@
 ﻿using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using System.Diagnostics;
 
 namespace HospitalManagementSystem.Services
 {
@@ -9,8 +10,7 @@ namespace HospitalManagementSystem.Services
         {
             string password = string.Empty;
             password = admin.Name.Substring(0, 5);
-            password += string.Concat(admin.PhoneNumber.Where(char.IsDigit));
-
+            password = admin.PhoneNumber;
             return password;
 
         }

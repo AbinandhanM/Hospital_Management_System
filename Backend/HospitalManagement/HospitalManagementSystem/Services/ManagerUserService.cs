@@ -1,6 +1,7 @@
 ﻿using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
 using HospitalManagementSystem.Models.DTO;
+using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -15,6 +16,20 @@ namespace HospitalManagementSystem.Services
         private readonly IPasswordGenerate  _passwordService;
         private readonly ITokenGenerate _tokenService;
 
+        public ManagerUserService(IRepo<int, Doctor> doctor,
+            IRepo<int, User> user,
+            IRepo<int, Patient>patient ,
+            IRepo<int, Admin>  admin,
+            ITokenGenerate tokenService,
+            IPasswordGenerate passwordService)
+        {
+            _doctorRepo = doctor;
+            _userRepo = user;
+            _adminRepo = admin;
+            _patientRepo = patient;
+            _passwordService = passwordService;
+            _tokenService = tokenService;
+        }
 
         public async Task<UserDTO> AdminRegister(AdminRegisterDTO admin)
         {
@@ -23,7 +38,7 @@ namespace HospitalManagementSystem.Services
             string generatedPassword = await _passwordService.GeneratePassword(admin);
             admin.User.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(generatedPassword));
             admin.User.PasswordKey = hmac.Key;
-            admin.User.Role = "Intern";
+            admin.User.Role = "Admin";
             admin.PasswordStatus = "Not Changed";
             var userResult = await _userRepo.Add(admin.User);
             var internResult = await _adminRepo.Add(admin);
@@ -39,23 +54,24 @@ namespace HospitalManagementSystem.Services
 
         public async Task<UserDTO> DoctorRegister(DoctorRegisterDTO doctor)
         {
-            UserDTO? user = null;
+            UserDTO myUser = null;
             var hmac = new HMACSHA512();
             doctor.Users = new User();
-            doctor.Users.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(doctor.PasswordClear));
+            doctor.Users.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(doctor.PasswordClear ?? "1234"));
             doctor.Users.PasswordKey = hmac.Key;
             doctor.Users.Role = "Doctor";
+            doctor.Status = "UnApproved";
+         
             var userResult = await _userRepo.Add(doctor.Users);
-
-            var patientResult = await _doctorRepo.Add(doctor);
-            if (userResult != null && patientResult != null)
+            var doctorResult = await _doctorRepo.Add(doctor);
+            if (userResult != null && doctorResult != null)
             {
-                user = new UserDTO();
-                user.UserId = patientResult.DoctorId;
-                user.Role = userResult.Role;
-                user.Token = _tokenService.GenerateToken(user);
+                myUser = new UserDTO();
+                myUser.UserId = doctorResult.DoctorId;
+                myUser.Role = userResult.Role;
+                myUser.Token = _tokenService.GenerateToken(myUser);
             }
-            return user;
+            return myUser;
         }
 
         public async Task<UserDTO> Login(UserDTO user)
@@ -82,7 +98,7 @@ namespace HospitalManagementSystem.Services
         {
             UserDTO? user = null;
             var hmac = new HMACSHA512();
-            patient.Users = new User();
+            //patient.Users = new User();
             patient.Users.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(patient.PasswordClear));
             patient.Users.PasswordKey = hmac.Key;
             patient.Users.Role = "Patient";

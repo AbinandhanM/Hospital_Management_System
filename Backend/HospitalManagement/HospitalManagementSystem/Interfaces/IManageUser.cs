@@ -1,5 +1,8 @@
-﻿using HospitalManagementSystem.Models;
+﻿using HospitalManagementSystem.Context;
+using HospitalManagementSystem.Interfaces;
+using HospitalManagementSystem.Models;
 using HospitalManagementSystem.Models.DTO;
+using HospitalManagementSystem.Services;
 
 namespace HospitalManagementSystem.Interfaces
 {
@@ -14,3 +17,5 @@ namespace HospitalManagementSystem.Interfaces
 
     }
 }
+
+
