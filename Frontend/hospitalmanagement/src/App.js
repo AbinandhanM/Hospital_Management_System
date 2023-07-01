@@ -5,7 +5,10 @@ import RegistrationForm from "./components/Registration/Registration";
 import PatientRegistrationForm from "./components/PatientRegistration/PatientRegistration";
 import AdminRegistrationForm from "./components/AdminRegistration/AdminRegistration";
 import HomeLanding from "./components/HomeLanding/HomeLanding";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Router, swit } from "react-router-dom";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
+import PatientDashboard from "./components/Dashboard/PatientDashBoard";
+import DoctorDashboard from "./components/Dashboard/DoctorDashboard";
 
 function App() {
   return (
@@ -20,13 +23,11 @@ function App() {
             element={<PatientRegistrationForm />}
           />
           <Route path="/adminregister" element={<AdminRegistrationForm />} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/patientdashboard" element={<PatientDashboard />} />
+          <Route path="/doctordashboard" element={<DoctorDashboard />} />
         </Routes>
       </BrowserRouter>
-
-      {/* <LoginForm /> */}
-      {/* <RegistrationForm /> */}
-      {/* <PatientRegistrationForm /> */}
-      {/* <AdminRegistrationForm /> */}
     </div>
   );
 }

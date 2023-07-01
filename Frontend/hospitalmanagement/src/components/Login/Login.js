@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function LoginForm() {
+  const navigate = useNavigate();
   var [Login, setLogin] = useState({
     userId: 0,
     password: "",
@@ -19,7 +21,20 @@ function LoginForm() {
     })
       .then(async (data) => {
         var myData = await data.json();
+        localStorage.setItem("userId", myData.userId); // Modify the property name here
+        localStorage.setItem("role", myData.role);
+        localStorage.setItem("token", myData.token);
         console.log(myData);
+        if (myData.role === "Patient") {
+          localStorage.setItem("userId", myData.userId);
+          navigate("/patientdashboard");
+        } else if (myData.role === "Doctor") {
+          navigate("/doctordashboard");
+        } else if (myData.role === "Admin") {
+          navigate("/admindashboard");
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => {
         console.log(err.error);
@@ -93,12 +108,12 @@ function LoginForm() {
                         type="button"
                         onClick={login}
                       >
-                        Sign in
+                        <Link to="/admindashboard">Sign In</Link>
                       </button>
 
                       <div className="text-center">
                         <a className="small" href="#">
-                          Forgot password?
+                          <Link to="/">Not an Member ! Sign up </Link>
                         </a>
                       </div>
                     </div>

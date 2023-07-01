@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import "./PatientRegistration.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -225,14 +225,14 @@ function PatientRegistrationForm() {
 
                     <div className="d-flex justify-content-end pt-3">
                       <button type="button" className="btn btn-light btn-lg">
-                        Reset all
+                        <Link to="/">BACK</Link>
                       </button>
                       <button
                         type="button"
                         onClick={register}
                         className="btn btn-warning btn-lg ms-2"
                       >
-                        Submit form
+                        <Link to="/">Submit form</Link>
                       </button>
                     </div>
                   </div>

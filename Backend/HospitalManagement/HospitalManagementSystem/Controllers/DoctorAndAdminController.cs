@@ -16,11 +16,13 @@ namespace HospitalManagementSystem.Controllers
     {
           
             private readonly IRepo<int, Doctor> _doctorRepo;
+        private readonly IRepo<int,Patient> _patientRepo;
 
-            public DoctorAndAdminController( IRepo<int, Doctor> doctorRepo)
+            public DoctorAndAdminController( IRepo<int, Doctor> doctorRepo,IRepo<int,Patient> patientRepo)
             {
                
                 _doctorRepo = doctorRepo;
+            _patientRepo = patientRepo;
             }
 
 
@@ -93,7 +95,32 @@ namespace HospitalManagementSystem.Controllers
                 }
             }
 
-            [HttpDelete]
+        [HttpGet("GetPatientById")]
+        [ProducesResponseType(typeof(ActionResult<Patient>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Patient>> GetPatientById(int patientId)
+        {
+            try
+            {
+                var patient = await _patientRepo.Get(patientId);
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+             
+                return BadRequest("Not able to get patient details based on ID");
+            }
+        }
+
+
+        [HttpDelete]
             [ProducesResponseType(typeof(ActionResult<Doctor>), StatusCodes.Status200OK)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

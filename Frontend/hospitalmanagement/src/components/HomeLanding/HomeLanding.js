@@ -12,10 +12,6 @@ function HomeLanding() {
             <h1>
               <a href="index.html">Care and Cure</a>
             </h1>
-            {/* <!-- Uncomment below if you prefer to use an image logo --> */}
-            <a href="index.html">
-              {/* <img src="assets/img/logo.png" alt="" class="img-fluid"></img> */}
-            </a>
           </div>
 
           <nav id="navbar" class="navbar order-last order-lg-0">
