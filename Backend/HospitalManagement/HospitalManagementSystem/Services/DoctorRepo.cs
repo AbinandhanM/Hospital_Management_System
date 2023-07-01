@@ -67,7 +67,7 @@ namespace HospitalManagementSystem.Services
         {
             try
             {
-                var doctor = await _context.Doctors.ToListAsync();//Include(i => i.DoctorId).
+                var doctor = await _context.Doctors.ToListAsync();
                 if (doctor.Count > 0)
                     return doctor;
             }

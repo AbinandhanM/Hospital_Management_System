@@ -60,7 +60,7 @@ namespace HospitalManagementSystem.Services
             doctor.Users.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(doctor.PasswordClear ?? "1234"));
             doctor.Users.PasswordKey = hmac.Key;
             doctor.Users.Role = "Doctor";
-            doctor.Status = "UnApproved";
+            doctor.Status = "Un Approved";
          
             var userResult = await _userRepo.Add(doctor.Users);
             var doctorResult = await _doctorRepo.Add(doctor);

@@ -44,13 +44,12 @@ function RegistrationForm() {
               <div className="row g-0">
                 <div className="col-xl-6 d-none d-xl-block">
                   <img
-                    src="https://images.unsplash.com/photo-1584819762556-68601d7f3a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
                     className="img-fluid"
                     alt="Doctor"
                     style={{
                       borderTopLeftRadius: ".25rem",
                       borderBottomLeftRadius: ".25rem",
-                      height: "100%",
                     }}
                   />
                 </div>
@@ -180,6 +179,25 @@ function RegistrationForm() {
                       <label
                         className="form-label"
                         htmlFor="form3Example90"
+                      ></label>
+                    </div>
+
+                    <div className="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="form3Example99"
+                        className="form-control form-control-lg"
+                        placeholder="Status"
+                        onChange={(event) => {
+                          setDoctor({
+                            ...doctor,
+                            status: event.target.value,
+                          });
+                        }}
+                      />
+                      <label
+                        className="form-label"
+                        htmlFor="form3Example99"
                       ></label>
                     </div>
 
