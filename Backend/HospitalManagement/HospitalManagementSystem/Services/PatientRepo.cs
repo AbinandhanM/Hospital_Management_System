@@ -1,11 +1,12 @@
 ﻿using HospitalManagementSystem.Context;
 using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystem.Services
 {
-    public class PatientRepo:IRepo<int, Patient>
+    public class PatientRepo : IRepo<int, Patient>
     {
         private readonly HospitalContext _context;
         private readonly ILogger<User> _logger;
@@ -98,6 +99,11 @@ namespace HospitalManagementSystem.Services
             }
             return null;
 
+        }
+
+        public Task<Patient?> Update(UpdateStatusDTO item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

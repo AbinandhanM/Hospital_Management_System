@@ -15,6 +15,8 @@ import ViewAdmin from "./components/AdminPages/ViewAdmin";
 import ViewSpecialties from "./components/PatientPages/ViewSpecialities";
 import UpdateDoctor from "./components/DoctorPages/UpdateDoctor";
 import ViewAllDoctor from "./components/AdminPages/ViewAllDoctor";
+import Status from "./components/AdminPages/Status";
+import DoctorsDelete from "./components/AdminPages/DeleteDoctor";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route path="/viewspecialties" element={<ViewSpecialties />} />
           <Route path="/updatedoctor" element={<UpdateDoctor />} />
           <Route path="/viewalldoctor" element={<ViewAllDoctor />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/deletedoctor" element={<DoctorsDelete />} />
         </Routes>
       </BrowserRouter>
     </div>

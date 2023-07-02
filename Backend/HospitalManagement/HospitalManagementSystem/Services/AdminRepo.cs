@@ -1,6 +1,7 @@
 ﻿using HospitalManagementSystem.Context;
 using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -70,6 +71,11 @@ namespace HospitalManagementSystem.Services
         }
 
         public Task<Admin?> Update(Admin item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Admin?> Update(UpdateStatusDTO item)
         {
             throw new NotImplementedException();
         }

@@ -195,7 +195,7 @@ function RegistrationForm() {
                         onChange={(event) => {
                           setDoctor({
                             ...doctor,
-                            status: event.target.value,
+                            passwordClear: event.target.value,
                           });
                         }}
                       />

@@ -1,6 +1,7 @@
 ﻿using HospitalManagementSystem.Context;
 using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.DTO;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -9,24 +10,19 @@ namespace HospitalManagementSystem.Services
     public class ApproveService : ICRUD
     {
         private readonly IRepo<int, Doctor> _doctorRepo;
-        private readonly HospitalContext _context;
+    
 
-        public ApproveService(IRepo<int, Doctor> doctorRepo, HospitalContext context)
+        public ApproveService(IRepo<int, Doctor> doctorRepo)
         {
             _doctorRepo = doctorRepo;
-            _context = context;
+        
         }
 
-        public async Task<Doctor> Approval(int doctorId)
+   
+
+        public Task<Doctor> Approval(UpdateStatusDTO updateStatus)
         {
-            var doctor = await _doctorRepo.Get(doctorId);
-            if (doctor != null)
-            {
-                doctor.Status = "Approved";
-                await _doctorRepo.Update(doctor);
-                await _context.SaveChangesAsync();
-            }
-            return doctor;
+            return _doctorRepo.Update(updateStatus);
         }
     }
 }

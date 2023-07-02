@@ -52,9 +52,14 @@ function AdminDashboard() {
                 </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Status
-                </a>
+                <Link className="nav-link" to="/status">
+                  Approve Status
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/deletedoctor">
+                  Delete Doctor
+                </Link>
               </li>
             </ul>
             {/* <!-- Left links --> */}

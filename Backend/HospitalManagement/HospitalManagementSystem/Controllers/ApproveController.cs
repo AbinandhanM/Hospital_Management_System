@@ -1,6 +1,7 @@
 ﻿using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models.DTO;
 using HospitalManagementSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,13 @@ namespace HospitalManagementSystem.Controllers
             _service = service;
         }
 
+        [Authorize(Roles="Admin")]
         [HttpPost]
         [ProducesResponseType(typeof(ActionResult<UserDTO>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<UserDTO>> IApprove(int doctorid)
+        public async Task<ActionResult<UserDTO>> IApprove(UpdateStatusDTO item)
         {
-            var result = await _service.Approval(doctorid);
+            var result = await _service.Approval(item);
             if (result != null)
             {
                 return Created("Home", result);

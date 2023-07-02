@@ -57,6 +57,8 @@ function ViewDoctor() {
                         </div>
                         <h6 class="f-w-600">Hello Doctor</h6>
                         <p>{data.name}</p>
+                        <p>Doctor ID</p>
+                        <span>{data.doctorId}</span>
                         <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                       </div>
                     </div>

@@ -1,11 +1,12 @@
 ﻿using HospitalManagementSystem.Context;
 using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystem.Services
 {
-    public class UserRepo : IRepo<int,User>
+    public class UserRepo : IRepo<int, User>
     {
         private readonly HospitalContext _context;
         private readonly ILogger<UserRepo> _logger;
@@ -96,6 +97,11 @@ namespace HospitalManagementSystem.Services
                 _logger.LogError(ex, "An error occurred while updating users from the database");
             }
             return null;
+        }
+
+        public Task<User?> Update(UpdateStatusDTO item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

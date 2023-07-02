@@ -1,7 +1,9 @@
 ﻿using HospitalManagementSystem.Context;
 using HospitalManagementSystem.Interfaces;
 using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.DTO;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace HospitalManagementSystem.Services
 {
@@ -25,7 +27,7 @@ namespace HospitalManagementSystem.Services
             }
             catch (Exception ex)
             {
-                  _logger.LogError(ex, "An error occurred while adding doctors to the database");
+                _logger.LogError(ex, "An error occurred while adding doctors to the database");
             }
             return null;
         }
@@ -53,7 +55,8 @@ namespace HospitalManagementSystem.Services
         {
             try
             {
-                var doctor = await _context.Doctors.Include(d=>d.Users).FirstOrDefaultAsync(i => i.DoctorId == key);
+                Doctor doctor = await _context.Doctors.Include(d => d.Users).FirstOrDefaultAsync(i => i.DoctorId == key);
+                Debug.WriteLine(doctor.Name);
                 return doctor;
             }
             catch (Exception ex)
@@ -99,7 +102,25 @@ namespace HospitalManagementSystem.Services
                 _logger.LogError(ex, "An error occurred while updating doctors to the database");
             }
             return null;
+        }
 
+        public async Task<Doctor?> Update(UpdateStatusDTO item)
+        {
+            try
+            {
+                var doctor = _context.Doctors.FirstOrDefault(u => u.DoctorId == item.UserId);
+                if (doctor != null)
+                {
+                    doctor.Status = item.Status ?? doctor.Status;
+                    await _context.SaveChangesAsync();
+                    return doctor;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating doctors to the database");
+            }
+            return null;
         }
     }
 }

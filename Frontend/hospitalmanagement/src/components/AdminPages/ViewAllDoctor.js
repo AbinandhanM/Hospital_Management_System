@@ -50,6 +50,8 @@ function ViewAllDoctor() {
                           </div>
                           <h6 className="f-w-600">Hello Doctor</h6>
                           <p>{doctor.name}</p>
+                          <p>Doctor ID</p>
+                          <span>{doctor.doctorId}</span>
                           <i className="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                         </div>
                       </div>
