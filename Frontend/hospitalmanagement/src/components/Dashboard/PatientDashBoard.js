@@ -2,6 +2,7 @@ import React from "react";
 import "./AdminDashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DoctorDashboard from "./DoctorDashboard";
 
 function PatientDashboard() {
   const navigate = useNavigate();
@@ -11,6 +12,11 @@ function PatientDashboard() {
   };
   return (
     <div>
+      {localStorage.getItem("role") == "Patient" ? (
+        <PatientDashboard />
+      ) : (
+        <DoctorDashboard />
+      )}
       {/* <!-- Navbar --> */}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {/* <!-- Container wrapper --> */}
@@ -42,19 +48,19 @@ function PatientDashboard() {
             {/* <!-- Left links --> */}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewpatient">
                   Profile
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewdoctor">
                   View Doctor
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewspecialties">
                   View Specialities
-                </a>
+                </Link>
               </li>
             </ul>
             {/* <!-- Left links --> */}

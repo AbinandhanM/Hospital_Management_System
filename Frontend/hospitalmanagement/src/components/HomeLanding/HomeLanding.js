@@ -117,7 +117,7 @@ function HomeLanding() {
         <div class="container">
           <div class="section-title">
             <h2>What We Do</h2>
-            <p>
+            <p id="text">
               we handle various administrative tasks including patient
               registration, scheduling appointments, managing medical records,
               coordinating staff, ensuring smooth operations, and delivering
@@ -136,7 +136,7 @@ function HomeLanding() {
                 <h4>
                   <a href="">Scheduling With Payments</a>
                 </h4>
-                <p>
+                <p id="text">
                   Specify your schedule, collect payments. Integrate the widget
                   with your website and your mobile app. It’s that simple!
                 </p>
@@ -151,7 +151,7 @@ function HomeLanding() {
                 <h4>
                   <a href="">HD Video/Audio</a>
                 </h4>
-                <p>
+                <p id="text">
                   You can have a HD Video/Audio call with your patients - both
                   on web and app.
                 </p>
@@ -166,7 +166,7 @@ function HomeLanding() {
                 <h4>
                   <a href="">E-Prescription</a>
                 </h4>
-                <p>
+                <p id="text">
                   A powerful but simple e-prescription (EMR) will allow you to
                   prescribe and share medications and advise.
                 </p>

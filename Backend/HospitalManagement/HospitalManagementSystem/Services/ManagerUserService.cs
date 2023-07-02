@@ -13,13 +13,13 @@ namespace HospitalManagementSystem.Services
         private readonly IRepo<int, Admin> _adminRepo;
         private readonly IRepo<int, Patient> _patientRepo;
         private readonly IRepo<int, Doctor> _doctorRepo;
-        private readonly IPasswordGenerate  _passwordService;
+        private readonly IPasswordGenerate _passwordService;
         private readonly ITokenGenerate _tokenService;
 
         public ManagerUserService(IRepo<int, Doctor> doctor,
             IRepo<int, User> user,
-            IRepo<int, Patient>patient ,
-            IRepo<int, Admin>  admin,
+            IRepo<int, Patient> patient,
+            IRepo<int, Admin> admin,
             ITokenGenerate tokenService,
             IPasswordGenerate passwordService)
         {
@@ -30,7 +30,7 @@ namespace HospitalManagementSystem.Services
             _passwordService = passwordService;
             _tokenService = tokenService;
         }
-         
+
         public async Task<UserDTO> AdminRegister(AdminRegisterDTO admin)
         {
             UserDTO user = null;
@@ -61,7 +61,7 @@ namespace HospitalManagementSystem.Services
             doctor.Users.PasswordKey = hmac.Key;
             doctor.Users.Role = "Doctor";
             doctor.Status = "Un Approved";
-         
+
             var userResult = await _userRepo.Add(doctor.Users);
             var doctorResult = await _doctorRepo.Add(doctor);
             if (userResult != null && doctorResult != null)
@@ -94,7 +94,7 @@ namespace HospitalManagementSystem.Services
             return user;
         }
 
-        public  async Task<UserDTO> PatientRegister(PatientRegisterDTO patient)
+        public async Task<UserDTO> PatientRegister(PatientRegisterDTO patient)
         {
             UserDTO? user = null;
             var hmac = new HMACSHA512();
@@ -109,7 +109,7 @@ namespace HospitalManagementSystem.Services
             {
                 user = new UserDTO();
                 user.UserId = patientResult.PatientId;
-                user.Role = userResult.Role;               
+                user.Role = userResult.Role;
                 user.Token = _tokenService.GenerateToken(user);
             }
             return user;
@@ -117,4 +117,3 @@ namespace HospitalManagementSystem.Services
         }
     }
 }
- 

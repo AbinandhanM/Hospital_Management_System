@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ViewDoctor.css";
 import AdminDashboard from "../Dashboard/AdminDashboard";
+import PatientDashboard from "../Dashboard/PatientDashBoard";
 import DoctorDashboard from "../Dashboard/DoctorDashboard";
 
 function ViewDoctor() {
@@ -11,8 +12,8 @@ function ViewDoctor() {
   }, []);
   const GetEmployeeInfo = () => {
     fetch(
-      "http://localhost:5126/api/DoctorAndAdmin/GetDoctorById/GetById?doctorID==" +
-        localStorage.getItem("id"),
+      "http://localhost:5126/api/DoctorAndAdmin/GetDoctorById/GetById?doctorID=" +
+        localStorage.getItem("userId"),
       {
         method: "GET",
         headers: {
@@ -32,10 +33,10 @@ function ViewDoctor() {
 
   return (
     <div>
-      {localStorage.getItem("role") == "Admin" ? (
-        <AdminDashboard />
-      ) : (
+      {localStorage.getItem("role") == "Doctor" ? (
         <DoctorDashboard />
+      ) : (
+        <PatientDashboard />
       )}
 
       <div className="home">

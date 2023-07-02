@@ -41,19 +41,19 @@ function DoctorDashboard() {
             {/* <!-- Left links --> */}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewdoctor">
                   Profile
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  View Doctor
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewspecialties">
                   Status
-                </a>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/viewspecialties">
+                  View Specialities
+                </Link>
               </li>
             </ul>
             {/* <!-- Left links --> */}
