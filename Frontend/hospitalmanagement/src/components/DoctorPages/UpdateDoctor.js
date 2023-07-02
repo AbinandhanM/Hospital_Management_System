@@ -1,22 +1,52 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./UpdateDoctor.css";
+import { useNavigate } from "react-router-dom";
 import DoctorDashboard from "../Dashboard/DoctorDashboard";
 
 function UpdateDoctor() {
-  // var [Doctor, setDoctor] = useState({
-  //   doctorId: 0,
-  //   users: {
-  //     userId: 0,
-  //   },
-  //   name: "",
-  //   dateOfBirth: new Date(),
-  //   phoneNumber: "",
-  //   emailId: "",
-  //   specialization: "",
-  //   experience: 0,
-  // });
+  const [formData, setFormData] = useState({
+    doctorId: localStorage.getItem("userId"),
+    users: {
+      userId: 0,
+    },
+    name: "",
+    dateOfBirth: "",
+    phoneNumber: "",
+    emailId: "",
+    specialization: "",
+    experience: 0,
+    status: "Approved",
+  });
 
+  const navigate = useNavigate();
+
+  const update = () => {
+    console.log(formData);
+    fetch(
+      "http://localhost:5126/api/DoctorAndAdmin/UpdateDoctorDetails?doctorID=" +
+        localStorage.getItem("userId"),
+      {
+        method: "PUT",
+        headers: {
+          accept: "text/plain",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, formData: {} }),
+      }
+    )
+      .then(async (data) => {
+        if (data.status >= 200 && data.status <= 300) {
+          var myData = await data.json();
+          console.log(myData);
+          alert("Doctor profile updated successfully!!");
+          navigate("/doctordashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err.error);
+      });
+  };
   return (
     <div>
       <DoctorDashboard />
@@ -72,6 +102,13 @@ function UpdateDoctor() {
                             type="text"
                             id="form3Example1m"
                             class="form-control form-control-lg"
+                            value={formData.name}
+                            onChange={(event, e) => {
+                              setFormData({
+                                ...formData,
+                                name: event.target.value,
+                              });
+                            }}
                           />
                           <label class="form-label" for="form3Example1m">
                             Name
@@ -84,6 +121,12 @@ function UpdateDoctor() {
                             type="date"
                             id="form3Example1n"
                             class="form-control form-control-lg"
+                            onChange={(event, e) => {
+                              setFormData({
+                                ...formData,
+                                dateOfBirth: event.target.value,
+                              });
+                            }}
                           />
                           <label class="form-label" for="form3Example1n">
                             DateofBirth
@@ -94,9 +137,15 @@ function UpdateDoctor() {
 
                     <div class="form-outline mb-4">
                       <input
-                        type="text"
+                        type="email"
                         id="form3Example8"
                         class="form-control form-control-lg"
+                        onChange={(event, e) => {
+                          setFormData({
+                            ...formData,
+                            emailId: event.target.value,
+                          });
+                        }}
                       />
                       <label class="form-label" for="form3Example8">
                         Email
@@ -108,6 +157,12 @@ function UpdateDoctor() {
                         type="text"
                         id="form3Example3"
                         class="form-control form-control-lg"
+                        onChange={(event, e) => {
+                          setFormData({
+                            ...formData,
+                            phoneNumber: event.target.value,
+                          });
+                        }}
                       />
                       <label class="form-label" for="form3Example3">
                         Phone Number
@@ -119,6 +174,12 @@ function UpdateDoctor() {
                         type="text"
                         id="form3Example2"
                         class="form-control form-control-lg"
+                        onChange={(event, e) => {
+                          setFormData({
+                            ...formData,
+                            specialization: event.target.value,
+                          });
+                        }}
                       />
                       <label class="form-label" for="form3Example2">
                         Specialization
@@ -130,6 +191,12 @@ function UpdateDoctor() {
                         type="number"
                         id="form3Example2"
                         class="form-control form-control-lg"
+                        onChange={(event, e) => {
+                          setFormData({
+                            ...formData,
+                            experience: event.target.value,
+                          });
+                        }}
                       />
                       <label class="form-label" for="form3Example2">
                         Experience
@@ -141,6 +208,7 @@ function UpdateDoctor() {
                         type="button"
                         class="btn btn-success btn-lg ms-2"
                         style={{ backgroundColor: "hsl(210, 100%, 50%)" }}
+                        onClick={update}
                       >
                         Update
                       </button>

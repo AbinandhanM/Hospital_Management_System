@@ -15,6 +15,7 @@ function ViewAllDoctor() {
       method: "GET",
       headers: {
         accept: "text/plain",
+        Authorization: "Bearer" + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     })

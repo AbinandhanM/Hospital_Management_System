@@ -27,7 +27,7 @@ namespace HospitalManagementSystem.Controllers
             _adminRepo = adminRepo;
             }
 
-
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(typeof(ActionResult<UserDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -49,7 +49,7 @@ namespace HospitalManagementSystem.Controllers
             }
         }
 
-
+        //[Authorize(Roles = "Doctor")]
         [HttpPut]
             [ProducesResponseType(typeof(Doctor), StatusCodes.Status200OK)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -121,6 +121,7 @@ namespace HospitalManagementSystem.Controllers
             }
         }
 
+
         [HttpGet("GetAdminById")]
         [ProducesResponseType(typeof(ActionResult<Admin>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -145,7 +146,7 @@ namespace HospitalManagementSystem.Controllers
             }
         }
 
-
+       // [Authorize(Roles = "Admin")]
         [HttpDelete]
             [ProducesResponseType(typeof(ActionResult<Doctor>), StatusCodes.Status200OK)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -20,7 +20,7 @@ namespace HospitalManagementSystem.Controllers
             _service = service;
         }
 
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         [HttpPost]
         [ProducesResponseType(typeof(ActionResult<UserDTO>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

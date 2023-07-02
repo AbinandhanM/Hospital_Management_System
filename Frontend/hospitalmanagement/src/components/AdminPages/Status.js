@@ -1,15 +1,12 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../AdminPages/Status.css";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import AdminDashboard from "../Dashboard/AdminDashboard";
 
 function Status() {
-  var [doctor, setDoctor] = useState({
+  const [doctor, setDoctor] = useState({
     doctorId: 0,
-    users: {},
     name: "",
-    dateOfBirth: "",
+    dateOfBirth: "0",
     phoneNumber: "",
     emailId: "",
     specialization: "",
@@ -19,74 +16,72 @@ function Status() {
 
   const navigate = useNavigate();
 
-  const update = () => {
-    // console.log(formData)
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setDoctor((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     fetch("http://localhost:5126/api/Approve/IApprove", {
       method: "POST",
       headers: {
-        accept: "text/plain",
+        Accept: "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...doctor }),
+      body: JSON.stringify(doctor),
     })
-      .then(async (data) => {
-        var myData = await data.json();
-        console.log(myData);
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
         navigate("/admindashboard");
       })
-      .catch((err) => {
-        console.log(err.error);
+      .catch((error) => {
+        console.log(error);
       });
   };
+
   return (
     <div>
       <AdminDashboard />
-      <div class="container mt-5">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-6">
-            <div class="card px-5 py-5" id="form1">
-              <div class="form-data" v-if="!submitted">
-                <div class="forms-inputs mb-4">
-                  {" "}
-                  <span>Doctor ID</span>{" "}
+      <div className="container mt-5">
+        <div className="row d-flex justify-content-center">
+          <div className="col-md-6">
+            <div className="card px-5 py-5" id="form1">
+              <form onSubmit={handleSubmit}>
+                <div className="forms-inputs mb-4">
+                  <label htmlFor="doctorId">Doctor ID</label>
                   <input
-                    autocomplete="off"
+                    id="doctorId"
+                    name="doctorId"
                     type="text"
-                    onChange={(event) => {
-                      setDoctor({
-                        ...doctor,
-                        doctorId: event.target.value,
-                      });
-                    }}
+                    value={doctor.doctorId}
+                    onChange={handleInputChange}
+                    autoComplete="off"
                   />
                 </div>
-                <div class="forms-inputs mb-4">
-                  <span>Status</span>{" "}
+                <div className="forms-inputs mb-4">
+                  <label htmlFor="status">Status</label>
                   <input
+                    id="status"
+                    name="status"
                     type="text"
-                    onChange={(event) => {
-                      setDoctor({
-                        ...doctor,
-                        status: event.target.value,
-                      });
-                    }}
+                    value={doctor.status}
+                    onChange={handleInputChange}
                   />
-                  <div class="invalid-feedback"></div>
+                  <div className="invalid-feedback"></div>
                 </div>
-                <div class="mb-3">
-                  {" "}
-                  <button class="btn btn-dark w-100" onClick={update}>
+                <div className="mb-3">
+                  <button className="btn btn-dark w-100" type="submit">
                     Change Status
                   </button>
                 </div>
-              </div>
-              <div class="success-data" v-else>
-                <div class="text-center d-flex flex-column">
-                  {" "}
-                  <i class="bx bxs-badge-check"></i>{" "}
-                  <span class="text-center fs-1"></span>{" "}
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -94,4 +89,5 @@ function Status() {
     </div>
   );
 }
+
 export default Status;

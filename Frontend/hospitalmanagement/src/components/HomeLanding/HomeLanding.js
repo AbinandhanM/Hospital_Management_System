@@ -188,8 +188,8 @@ function HomeLanding() {
                   data-purecounter-duration="1"
                   class="purecounter"
                 ></span>
-                <p>Happy Clients</p>
-                <p>15,000</p>
+                <p id="text">Happy Clients</p>
+                <p id="text">15,000</p>
               </div>
             </div>
 
@@ -202,8 +202,8 @@ function HomeLanding() {
                   data-purecounter-duration="1"
                   class="purecounter"
                 ></span>
-                <p>Projects</p>
-                <p>2,165</p>
+                <p id="text">Projects</p>
+                <p id="text">2,165</p>
               </div>
             </div>
 
@@ -216,8 +216,8 @@ function HomeLanding() {
                   data-purecounter-duration="1"
                   class="purecounter"
                 ></span>
-                <p>Hours Of Support</p>
-                <p>35,782</p>
+                <p id="text">Hours Of Support</p>
+                <p id="text">35,782</p>
               </div>
             </div>
 
@@ -230,8 +230,8 @@ function HomeLanding() {
                   data-purecounter-duration="1"
                   class="purecounter"
                 ></span>
-                <p>Hard Workers</p>
-                <p>859</p>
+                <p id="text">Hard Workers</p>
+                <p id="text">859</p>
               </div>
             </div>
           </div>
@@ -243,7 +243,7 @@ function HomeLanding() {
           <div className="container">
             <div className="row">
               <div className="col-lg-3 col-md-6 footer-contact">
-                <h3>Lumia</h3>
+                <h3>Care & Cure</h3>
                 <p>
                   2/108 Alagappa Colony <br />
                   Shollinganallur, Chennai 600021
