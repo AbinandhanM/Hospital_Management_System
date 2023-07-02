@@ -46,8 +46,8 @@ function DoctorDashboard() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link className="nav-link" to="/viewspecialties">
-                  Status
+                <Link className="nav-link" to="/updatedoctor">
+                  Update Details
                 </Link>
               </li>
               <li class="nav-item">
