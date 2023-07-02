@@ -9,6 +9,10 @@ import { BrowserRouter, Route, Routes, Router, swit } from "react-router-dom";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import PatientDashboard from "./components/Dashboard/PatientDashBoard";
 import DoctorDashboard from "./components/Dashboard/DoctorDashboard";
+import ViewDoctor from "./components/AdminPages/ViewDoctor";
+import ViewPatient from "./components/AdminPages/ViewPatient";
+import ViewAdmin from "./components/AdminPages/ViewAdmin";
+import ViewSpecialties from "./components/PatientPages/ViewSpecialities";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/patientdashboard" element={<PatientDashboard />} />
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
+          <Route path="/viewdoctor" element={<ViewDoctor />} />
+          <Route path="/viewpatient" element={<ViewPatient />} />
+          <Route path="/viewadmin" element={<ViewAdmin />} />
+          <Route path="/viewspecialties" element={<ViewSpecialties />} />
         </Routes>
       </BrowserRouter>
     </div>

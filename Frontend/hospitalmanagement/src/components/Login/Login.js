@@ -51,7 +51,7 @@ function LoginForm() {
               <div className="row">
                 <div className="col-md-9 col-lg-8 mx-auto">
                   <h3 className="login-heading mb-4">
-                    Welcome back! Oops You Alright ?
+                    <p id="text"> Welcome back! Oops You Alright ?</p>
                   </h3>
 
                   {/* Sign In Form */}
@@ -98,7 +98,7 @@ function LoginForm() {
                         className="form-check-label"
                         htmlFor="rememberPasswordCheck"
                       >
-                        Remember password
+                        <p id="text"> Remember password</p>
                       </label>
                     </div>
 

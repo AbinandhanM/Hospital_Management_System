@@ -1,6 +1,7 @@
 import React from "react";
 import "./AdminDashboard.css";
 import { Link, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function PatientDashboard() {
   const navigate = useNavigate();

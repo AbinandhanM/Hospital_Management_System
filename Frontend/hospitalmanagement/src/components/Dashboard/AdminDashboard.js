@@ -1,6 +1,7 @@
 import React from "react";
 import "./AdminDashboard.css";
 import { Link, useNavigate } from "react-router-dom";
+import ViewDoctor from "../AdminPages/ViewDoctor";
 
 function AdminDashboard() {
   const navigate = useNavigate();
