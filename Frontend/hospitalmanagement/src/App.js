@@ -14,6 +14,7 @@ import ViewPatient from "./components/AdminPages/ViewPatient";
 import ViewAdmin from "./components/AdminPages/ViewAdmin";
 import ViewSpecialties from "./components/PatientPages/ViewSpecialities";
 import UpdateDoctor from "./components/DoctorPages/UpdateDoctor";
+import ViewAllDoctor from "./components/AdminPages/ViewAllDoctor";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/viewadmin" element={<ViewAdmin />} />
           <Route path="/viewspecialties" element={<ViewSpecialties />} />
           <Route path="/updatedoctor" element={<UpdateDoctor />} />
+          <Route path="/viewalldoctor" element={<ViewAllDoctor />} />
         </Routes>
       </BrowserRouter>
     </div>

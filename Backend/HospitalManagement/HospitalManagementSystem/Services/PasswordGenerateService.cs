@@ -10,7 +10,6 @@ namespace HospitalManagementSystem.Services
         {
             string password = string.Empty;
             password = admin.Name.Substring(0, 5);
-            password = admin.PhoneNumber;
             return password;
 
         }

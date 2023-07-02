@@ -17,12 +17,14 @@ namespace HospitalManagementSystem.Controllers
           
             private readonly IRepo<int, Doctor> _doctorRepo;
         private readonly IRepo<int,Patient> _patientRepo;
+        private readonly IRepo<int, Admin> _adminRepo;
 
-            public DoctorAndAdminController( IRepo<int, Doctor> doctorRepo,IRepo<int,Patient> patientRepo)
+            public DoctorAndAdminController( IRepo<int, Doctor> doctorRepo,IRepo<int,Patient> patientRepo,IRepo<int,Admin>adminRepo)
             {
                
                 _doctorRepo = doctorRepo;
             _patientRepo = patientRepo;
+            _adminRepo = adminRepo;
             }
 
 
@@ -116,6 +118,30 @@ namespace HospitalManagementSystem.Controllers
             {
              
                 return BadRequest("Not able to get patient details based on ID");
+            }
+        }
+
+        [HttpGet("GetAdminById")]
+        [ProducesResponseType(typeof(ActionResult<Admin>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Admin>> GetAdminById(int adminId)
+        {
+            try
+            {
+                var admin = await _adminRepo.Get(adminId);
+                if (admin != null)
+                {
+                    return Ok(admin);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest("Not able to get Admin details based on ID");
             }
         }
 

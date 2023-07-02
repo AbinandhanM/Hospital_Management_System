@@ -42,14 +42,14 @@ function AdminDashboard() {
             {/* <!-- Left links --> */}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link className="nav-link" to="/viewadmin">
                   Profile
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  View Doctor
-                </a>
+                <Link className="nav-link" to="/viewalldoctor">
+                  View All Doctor
+                </Link>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
