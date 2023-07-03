@@ -1,4 +1,5 @@
 import "./App.css";
+import nodemailer from "nodemailer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/Login/Login";
@@ -30,6 +31,7 @@ import UpdateDoctorProtected from "./components/ProtectedRouting/UpdateDoctorPro
 import ViewAllDoctorProtected from "./components/ProtectedRouting/ViewAllDoctorProtected";
 import StatusProtected from "./components/ProtectedRouting/StatusProtected";
 import DeleteDoctorProtected from "./components/ProtectedRouting/DeleteDoctorProtected";
+import emailjs from "@emailjs/browser";
 
 function App() {
   var token;

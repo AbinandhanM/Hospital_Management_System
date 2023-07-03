@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 
 import "./AdminRegistration.css";
@@ -33,6 +34,33 @@ function AdminRegistrationForm() {
       .catch((err) => {
         console.log(err.error);
       });
+  };
+
+  const sendEmail = () => {
+    const templateParams = {
+      to_name: Admin.name,
+      from_name: "Care&Cureadmin",
+      message: "This is a new message",
+      admin_id: Admin.adminId,
+      name: Admin.name,
+      email: Admin.emailId,
+    };
+
+    emailjs
+      .send(
+        "service_j2td9lo",
+        "template_bzy743m",
+        templateParams,
+        "ZQpYlL2pMFxLePySZ"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
@@ -149,7 +177,10 @@ function AdminRegistrationForm() {
                       </button>
                       <button
                         type="button"
-                        onClick={register}
+                        onClick={() => {
+                          register();
+                          sendEmail();
+                        }}
                         className="btn btn-warning btn-lg ms-2"
                       >
                         <Link to="/">Submit form</Link>
