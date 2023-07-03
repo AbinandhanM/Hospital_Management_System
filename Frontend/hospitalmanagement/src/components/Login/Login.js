@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +18,7 @@ function LoginForm() {
       headers: {
         accept: "text/plain",
         "Content-Type": "application/json",
+        
       },
       body: JSON.stringify({ ...Login }),
     })
@@ -28,12 +31,16 @@ function LoginForm() {
         if (myData.role === "Patient") {
           localStorage.setItem("userId", myData.userId);
           navigate("/patientdashboard");
+          toast.success("successful");
         } else if (myData.role === "Doctor") {
           navigate("/doctordashboard");
+          toast.success("successful");
         } else if (myData.role === "Admin") {
           navigate("/admindashboard");
+          toast.success("successful");
         } else {
           navigate("/");
+          toast.error("error");
         }
       })
       .catch((err) => {

@@ -9,6 +9,7 @@ function ViewAdmin() {
     GetEmployeeInfo();
   }, []);
   const GetEmployeeInfo = () => {
+    let JwtToken = localStorage.getItem("token");
     fetch(
       "http://localhost:5126/api/DoctorAndAdmin/GetAdminById/GetAdminById?adminId=" +
         localStorage.getItem("userId"),
@@ -17,6 +18,7 @@ function ViewAdmin() {
         headers: {
           accept: "text/plain",
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + JwtToken,
         },
       }
     )

@@ -22,6 +22,7 @@ function UpdateDoctor() {
   const navigate = useNavigate();
 
   const update = () => {
+    let JwtToken = localStorage.getItem("token");
     console.log(formData);
     fetch(
       "http://localhost:5126/api/DoctorAndAdmin/UpdateDoctorDetails?doctorID=" +
@@ -31,6 +32,7 @@ function UpdateDoctor() {
         headers: {
           accept: "text/plain",
           "Content-Type": "application/json",
+          Authorization: "Bearer " + JwtToken,
         },
         body: JSON.stringify({ ...formData, formData: {} }),
       }

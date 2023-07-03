@@ -1,10 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ViewSpecialities.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PatientDashboard from "../Dashboard/PatientDashBoard";
 import DoctorDashboard from "../Dashboard/DoctorDashboard";
 
-const ViewSpecialties = () => {
+const ViewSpecialties = () => {  
+  const JwtToken = localStorage.getItem("token");
+
+  if(JwtToken != ""){
   return (
     <div>
       {localStorage.getItem("role") == "Patient" ? (
@@ -12,6 +17,7 @@ const ViewSpecialties = () => {
       ) : (
         <DoctorDashboard />
       )}
+      
       <section className="light">
         <div className="container py-2">
           <div className="h1 text-center text-dark" id="pageHeaderTitle"></div>
@@ -234,8 +240,12 @@ const ViewSpecialties = () => {
           </article>
         </div>
       </section>
+      
     </div>
   );
+      }
+      return null;
+     
 };
 
 export default ViewSpecialties;

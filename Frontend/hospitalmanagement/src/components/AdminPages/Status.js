@@ -1,87 +1,98 @@
-import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../AdminPages/Status.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import AdminDashboard from "../Dashboard/AdminDashboard";
 
 function Status() {
-  const [doctor, setDoctor] = useState({
-    doctorId: 0,
-    name: "",
-    dateOfBirth: "0",
-    phoneNumber: "",
-    emailId: "",
-    specialization: "",
-    experience: 0,
-    status: "",
-  });
+  var [doctor, setDoctor] = useState(
+    {
+      "userId": 0,
+      "status": ""
+    }
+  );
 
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setDoctor((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const update = () => {
+    let JwtToken = localStorage.getItem("token");
+    console.log(doctor);
     fetch("http://localhost:5126/api/Approve/IApprove", {
       method: "POST",
       headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        accept: "text/plain",
+        "Authorization": "Bearer " + JwtToken,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(doctor),
+      body: JSON.stringify({ ...doctor }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then(async (data) => {
+        var myData = await data.json();
+        console.log(myData);
         navigate("/admindashboard");
+        toast.success("Status Updated Successfully");
+
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err.error);
       });
   };
 
   return (
     <div>
       <AdminDashboard />
-      <div className="container mt-5">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-6">
-            <div className="card px-5 py-5" id="form1">
-              <form onSubmit={handleSubmit}>
-                <div className="forms-inputs mb-4">
-                  <label htmlFor="doctorId">Doctor ID</label>
+      <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+              <div class="form-data" v-if="!submitted">
+                <div class="forms-inputs mb-4">
+                  {" "}
+                  <span>Employee ID</span>{" "}
                   <input
-                    id="doctorId"
-                    name="doctorId"
+                    autocomplete="off"
                     type="text"
-                    value={doctor.doctorId}
-                    onChange={handleInputChange}
-                    autoComplete="off"
+                    onChange={(event) => {
+                      setDoctor({
+                        ...doctor,
+                        userId: event.target.value,
+                      });
+                    }}
                   />
                 </div>
-                <div className="forms-inputs mb-4">
-                  <label htmlFor="status">Status</label>
-                  <input
-                    id="status"
-                    name="status"
-                    type="text"
+                <div class="forms-inputs mb-4">
+                  <span>Status</span>{" "}
+                  <select
+                    onChange={(event) => {
+                      setDoctor({
+                        ...doctor,
+                        status: event.target.value,
+                      });
+                    }}
                     value={doctor.status}
-                    onChange={handleInputChange}
-                  />
-                  <div className="invalid-feedback"></div>
+                  >
+                    <option value="Approve">Approve</option>
+                    <option value="Reject">Reject</option>
+                    <option value="Pending">Pending</option>
+                  </select>
+                  <div class="invalid-feedback"></div>
                 </div>
-                <div className="mb-3">
-                  <button className="btn btn-dark w-100" type="submit">
+                <div class="mb-3">
+                  {" "}
+                  <button class="btn btn-dark w-100" onClick={update}>
                     Change Status
                   </button>
                 </div>
-              </form>
+              </div>
+              <div class="success-data" v-else>
+                <div class="text-center d-flex flex-column">
+                  {" "}
+                  <i class="bx bxs-badge-check"></i>{" "}
+                  <span class="text-center fs-1"></span>{" "}
+                </div>
+              </div>
             </div>
           </div>
         </div>

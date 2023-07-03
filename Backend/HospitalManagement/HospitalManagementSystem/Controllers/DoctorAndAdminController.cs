@@ -146,7 +146,7 @@ namespace HospitalManagementSystem.Controllers
             }
         }
 
-       // [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpDelete]
             [ProducesResponseType(typeof(ActionResult<Doctor>), StatusCodes.Status200OK)]
             [ProducesResponseType(StatusCodes.Status400BadRequest)]

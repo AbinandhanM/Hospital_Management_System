@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ViewDoctor.css";
-import AdminDashboard from "../Dashboard/AdminDashboard";
 import PatientDashboard from "../Dashboard/PatientDashBoard";
 import DoctorDashboard from "../Dashboard/DoctorDashboard";
 
@@ -11,13 +10,15 @@ function ViewDoctor() {
     GetEmployeeInfo();
   }, []);
   const GetEmployeeInfo = () => {
+    let JwtToken = localStorage.getItem("token");
     fetch(
       "http://localhost:5126/api/DoctorAndAdmin/GetDoctorById/GetById?doctorID=" +
         localStorage.getItem("userId"),
       {
         method: "GET",
         headers: {
-          accept: "text/plain",
+          "accept": "text/plain",
+          "Authorization": "Bearer " + JwtToken,
           "Content-Type": "application/json",
         },
       }

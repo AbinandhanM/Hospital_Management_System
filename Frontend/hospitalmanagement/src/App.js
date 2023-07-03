@@ -1,4 +1,6 @@
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/Login/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrationForm from "./components/Registration/Registration";
@@ -17,10 +19,23 @@ import UpdateDoctor from "./components/DoctorPages/UpdateDoctor";
 import ViewAllDoctor from "./components/AdminPages/ViewAllDoctor";
 import Status from "./components/AdminPages/Status";
 import DoctorsDelete from "./components/AdminPages/DeleteDoctor";
+import AdminProtected from "./components/ProtectedRouting/AdminProtected";
+import DoctorProtected from "./components/ProtectedRouting/DoctorProtected";
+import PatientProtected from "./components/ProtectedRouting/PatientProtected";
+import ViewDoctorProtected from "./components/ProtectedRouting/ViewDoctorProtected";
+import ViewPatientProtected from "./components/ProtectedRouting/ViewPatientProtected";
+import ViewAdminProtected from "./components/ProtectedRouting/ViewAdminProtected";
+import ViewSpecialtiesProtected from "./components/ProtectedRouting/ViewSpecialitiesProtected";
+import UpdateDoctorProtected from "./components/ProtectedRouting/UpdateDoctorProtected";
+import ViewAllDoctorProtected from "./components/ProtectedRouting/ViewAllDoctorProtected";
+import StatusProtected from "./components/ProtectedRouting/StatusProtected";
+import DeleteDoctorProtected from "./components/ProtectedRouting/DeleteDoctorProtected";
 
 function App() {
+  var token;
   return (
     <div className="App">
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeLanding />} />
@@ -31,17 +46,98 @@ function App() {
             element={<PatientRegistrationForm />}
           />
           <Route path="/adminregister" element={<AdminRegistrationForm />} />
-          <Route path="/admindashboard" element={<AdminDashboard />} />
-          <Route path="/patientdashboard" element={<PatientDashboard />} />
-          <Route path="/doctordashboard" element={<DoctorDashboard />} />
-          <Route path="/viewdoctor" element={<ViewDoctor />} />
-          <Route path="/viewpatient" element={<ViewPatient />} />
-          <Route path="/viewadmin" element={<ViewAdmin />} />
-          <Route path="/viewspecialties" element={<ViewSpecialties />} />
-          <Route path="/updatedoctor" element={<UpdateDoctor />} />
-          <Route path="/viewalldoctor" element={<ViewAllDoctor />} />
-          <Route path="/status" element={<Status />} />
-          <Route path="/deletedoctor" element={<DoctorsDelete />} />
+
+          <Route
+            path="/viewdoctor"
+            element={
+              <ViewDoctorProtected token={token}>
+                <ViewDoctor />
+              </ViewDoctorProtected>
+            }
+          />
+          <Route
+            path="/viewpatient"
+            element={
+              <ViewPatientProtected token={token}>
+                <ViewPatient />
+              </ViewPatientProtected>
+            }
+          />
+          <Route
+            path="/viewadmin"
+            element={
+              <ViewAdminProtected token={token}>
+                <ViewAdmin />
+              </ViewAdminProtected>
+            }
+          />
+          <Route
+            path="/viewspecialties"
+            element={
+              <ViewSpecialtiesProtected token={token}>
+                <ViewSpecialties />
+              </ViewSpecialtiesProtected>
+            }
+          />
+          <Route
+            path="/updatedoctor"
+            element={
+              <UpdateDoctorProtected token={token}>
+                <UpdateDoctor />
+              </UpdateDoctorProtected>
+            }
+          />
+          <Route
+            path="/viewalldoctor"
+            element={
+              <ViewAllDoctorProtected token={token}>
+                <ViewAllDoctor />
+              </ViewAllDoctorProtected>
+            }
+          />
+          <Route
+            path="/status"
+            element={
+              <StatusProtected token={token}>
+                <Status />
+              </StatusProtected>
+            }
+          />
+          <Route
+            path="/deletedoctor"
+            element={
+              <DeleteDoctorProtected token={token}>
+                <DoctorsDelete />
+              </DeleteDoctorProtected>
+            }
+          />
+
+          <Route
+            path="/admindashboard"
+            element={
+              <AdminProtected token={token}>
+                <AdminDashboard />
+              </AdminProtected>
+            }
+          />
+
+          <Route
+            path="/patientdashboard"
+            element={
+              <PatientProtected token={token}>
+                <PatientDashboard />
+              </PatientProtected>
+            }
+          />
+
+          <Route
+            path="/doctordashboard"
+            element={
+              <DoctorProtected token={token}>
+                <DoctorDashboard />
+              </DoctorProtected>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

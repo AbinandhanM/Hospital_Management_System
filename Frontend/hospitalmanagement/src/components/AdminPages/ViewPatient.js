@@ -10,6 +10,7 @@ function ViewPatient() {
     GetEmployeeInfo();
   }, []);
   const GetEmployeeInfo = () => {
+    let JwtToken = localStorage.getItem("token");    
     fetch(
       "http://localhost:5126/api/DoctorAndAdmin/GetPatientById/GetPatientById?patientId=" +
         localStorage.getItem("userId"),
@@ -18,6 +19,7 @@ function ViewPatient() {
         headers: {
           accept: "text/plain",
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + JwtToken,
         },
       }
     )

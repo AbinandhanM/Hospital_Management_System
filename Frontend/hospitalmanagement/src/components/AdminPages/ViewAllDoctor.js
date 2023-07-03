@@ -11,11 +11,12 @@ function ViewAllDoctor() {
   }, []);
 
   const GetEmployeeInfo = () => {
+    let JwtToken = localStorage.getItem("token");
     fetch("http://localhost:5126/api/DoctorAndAdmin/GetAllDoctors", {
       method: "GET",
       headers: {
         accept: "text/plain",
-        Authorization: "Bearer" + localStorage.getItem("token"),
+        "Authorization": "Bearer " + JwtToken,
         "Content-Type": "application/json",
       },
     })

@@ -30,6 +30,7 @@ function PatientRegistrationForm() {
       .then(async (data) => {
         var myData = await data.json();
         console.log(myData);
+        alert("Registerd Successfully your ID is " + myData.userId);
       })
       .catch((err) => {
         console.log(err.error);

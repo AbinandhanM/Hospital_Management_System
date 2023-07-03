@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./DeleteDoctor.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AdminDashboard from "../Dashboard/AdminDashboard";
 const DoctorsDelete = () => {
   // get Doctor
@@ -8,13 +10,15 @@ const DoctorsDelete = () => {
     GetEmployeeInfo();
   }, []);
   const GetEmployeeInfo = () => {
+    let JwtToken = localStorage.getItem("token");
     fetch(
       "http://localhost:5126/api/DoctorAndAdmin/GetAdminById/GetAdminById?adminId=" +
         localStorage.getItem("userId"),
       {
-        method: "GET",
+        "method": "GET",
         headers: {
-          accept: "text/plain",
+          "Authorization": "Bearer " + JwtToken,
+          "accept": "text/plain",
           "Content-Type": "application/json",
         },
       }
@@ -37,22 +41,30 @@ const DoctorsDelete = () => {
 
   const handleDeleteDoctor = async () => {
     try {
+      alert("helo")
+      let JwtToken = localStorage.getItem("token");
+      console.log(JwtToken);
       const response = await fetch(
         `http://localhost:5126/api/DoctorAndAdmin/DeleteDoctor?doctorID=${doctorId}`,
         {
-          method: "DELETE",
+          "method": "DELETE",
           headers: {
-            accept: "text/plain",
-          },
+            "Authorization": "Bearer " + JwtToken,
+            "accept": "text/plain",
+            "Content-Type": "application/json",
+          },         
+
         }
+        
       );
 
       if (response.ok) {
         const message = await response.text();
         console.log(message);
-        alert("Doctor deleted Successfully");
+        toast.success("Doctor deleted Successfully");
         // Handle success message or update the doctor list if needed
       } else {
+        toast.error("Doctor Cant Be deleted");
         console.log("Error:", response.status);
         // Handle error message
       }

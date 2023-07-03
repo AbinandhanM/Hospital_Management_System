@@ -25,7 +25,10 @@ function AdminRegistrationForm() {
       .then(async (data) => {
         var myData = await data.json();
         console.log(myData);
-        alert("Your Password is First 5 Letter of Your Name + Phone Number");
+        alert(
+          "Your Password is First 5 Letter of Your Name And Id is" +
+            myData.userId
+        );
       })
       .catch((err) => {
         console.log(err.error);
