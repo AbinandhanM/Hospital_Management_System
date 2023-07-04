@@ -7,12 +7,10 @@ import React, { useEffect, useState } from "react";
 import AdminDashboard from "../Dashboard/AdminDashboard";
 
 function Status() {
-  var [doctor, setDoctor] = useState(
-    {
-      "userId": 0,
-      "status": ""
-    }
-  );
+  var [doctor, setDoctor] = useState({
+    userId: 0,
+    status: "",
+  });
 
   const navigate = useNavigate();
 
@@ -23,7 +21,7 @@ function Status() {
       method: "POST",
       headers: {
         accept: "text/plain",
-        "Authorization": "Bearer " + JwtToken,
+        Authorization: "Bearer " + JwtToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...doctor }),
@@ -33,7 +31,6 @@ function Status() {
         console.log(myData);
         navigate("/admindashboard");
         toast.success("Status Updated Successfully");
-
       })
       .catch((err) => {
         console.log(err.error);
@@ -50,7 +47,7 @@ function Status() {
               <div class="form-data" v-if="!submitted">
                 <div class="forms-inputs mb-4">
                   {" "}
-                  <span>Employee ID</span>{" "}
+                  <span>Doctor ID</span>{" "}
                   <input
                     autocomplete="off"
                     type="text"

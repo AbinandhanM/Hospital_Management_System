@@ -27,7 +27,7 @@ namespace HospitalManagementSystem.Controllers
             _adminRepo = adminRepo;
             }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(typeof(ActionResult<UserDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

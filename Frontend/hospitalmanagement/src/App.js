@@ -1,5 +1,4 @@
 import "./App.css";
-import nodemailer from "nodemailer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/Login/Login";

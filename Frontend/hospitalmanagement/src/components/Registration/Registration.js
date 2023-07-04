@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Registration.css";
+import emailjs from "emailjs-com";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function RegistrationForm() {

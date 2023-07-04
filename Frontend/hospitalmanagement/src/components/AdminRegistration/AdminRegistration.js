@@ -26,41 +26,38 @@ function AdminRegistrationForm() {
       .then(async (data) => {
         var myData = await data.json();
         console.log(myData);
+        console.log(Admin.emailId);
+        console.log(Admin.name);
+        console.log(myData.userId);
         alert(
           "Your Password is First 5 Letter of Your Name And Id is" +
             myData.userId
         );
+        const Password = Admin.name.substring(0, 5);
+        const templateParams = {
+          to_email: Admin.emailId,
+          // subject: "Your registration is successful!",
+          message: `Dear ${Admin.name},\n \n Your Account has been Created \n Your User id is ${myData.userId} \n Your Password is ${Password}`,
+        };
+
+        emailjs
+          .send(
+            "service_4lcglkt",
+            "template_l836dmz",
+            templateParams,
+            "ha51KiESTOBT2vQpa"
+          )
+          .then((response) => {
+            console.log("Email sent!", response.text);
+          })
+          .catch((error) => {
+            console.error("Error sending email:", error);
+          });
       })
+
       .catch((err) => {
         console.log(err.error);
       });
-  };
-
-  const sendEmail = () => {
-    const templateParams = {
-      to_name: Admin.name,
-      from_name: "Care&Cureadmin",
-      message: "This is a new message",
-      admin_id: Admin.adminId,
-      name: Admin.name,
-      email: Admin.emailId,
-    };
-
-    emailjs
-      .send(
-        "service_j2td9lo",
-        "template_bzy743m",
-        templateParams,
-        "ZQpYlL2pMFxLePySZ"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
   };
 
   return (
@@ -179,7 +176,6 @@ function AdminRegistrationForm() {
                         type="button"
                         onClick={() => {
                           register();
-                          sendEmail();
                         }}
                         className="btn btn-warning btn-lg ms-2"
                       >

@@ -31,7 +31,7 @@ namespace HospitalManagementSystem.Controllers
             {
                 return Created("Home", result);
             }
-            return BadRequest("Unable to Approve at this moment");
+            return BadRequest("Unable to Approve at this moment or Check DOctor ID  once");
         }
     }
 }
