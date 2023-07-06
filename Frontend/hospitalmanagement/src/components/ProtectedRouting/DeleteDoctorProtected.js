@@ -1,9 +1,15 @@
 import { Navigate } from "react-router-dom";
 
-function DeleteDoctorProtected({ token, children }) {
+function DeleteDoctorProtected({ children, role, token }) {
   token = localStorage.getItem("token");
-  if (token != null) return children;
-  return <Navigate to="/" />;
+  role = localStorage.getItem("role");
+
+  if (token !== null && role === "Admin") {
+    return children;
+  } else {
+    localStorage.clear();
+    return <Navigate to="/error" />;
+  }
 }
 
 export default DeleteDoctorProtected;

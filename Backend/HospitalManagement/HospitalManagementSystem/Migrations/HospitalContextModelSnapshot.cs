@@ -27,18 +27,12 @@ namespace HospitalManagementSystem.Migrations
                     b.Property<int>("AdminId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddedBy")
-                        .HasColumnType("int");
-
                     b.Property<string>("EmailId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordStatus")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")

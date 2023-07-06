@@ -73,6 +73,7 @@ function Status() {
                     <option value="Approve">Approve</option>
                     <option value="Reject">Reject</option>
                     <option value="Pending">Pending</option>
+                    <option value="Approve">Approve</option>
                   </select>
                   <div class="invalid-feedback"></div>
                 </div>

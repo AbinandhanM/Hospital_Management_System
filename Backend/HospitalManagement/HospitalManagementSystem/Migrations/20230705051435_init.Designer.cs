@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    [Migration("20230704043604_init")]
+    [Migration("20230705051435_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,18 +29,12 @@ namespace HospitalManagementSystem.Migrations
                     b.Property<int>("AdminId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddedBy")
-                        .HasColumnType("int");
-
                     b.Property<string>("EmailId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordStatus")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")

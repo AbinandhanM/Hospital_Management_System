@@ -17,8 +17,8 @@ function ViewDoctor() {
       {
         method: "GET",
         headers: {
-          "accept": "text/plain",
-          "Authorization": "Bearer " + JwtToken,
+          accept: "text/plain",
+          Authorization: "Bearer " + JwtToken,
           "Content-Type": "application/json",
         },
       }

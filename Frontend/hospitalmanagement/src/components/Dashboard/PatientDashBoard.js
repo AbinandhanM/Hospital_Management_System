@@ -12,11 +12,11 @@ function PatientDashboard() {
   };
   return (
     <div>
-      {localStorage.getItem("role") == "Patient" ? (
+      {/* {localStorage.getItem("role") == "Patient" ? (
         <PatientDashboard />
       ) : (
         <DoctorDashboard />
-      )}
+      )} */}
       {/* <!-- Navbar --> */}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {/* <!-- Container wrapper --> */}
@@ -102,8 +102,11 @@ function PatientDashboard() {
               >
                 <li>
                   <a class="dropdown-item" href="#">
-                    My profile
+                    My Profile
                   </a>
+                  {/* <Link className="nav-link" to="/viewpatient">
+                    MyProfile
+                  </Link> */}
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">

@@ -94,9 +94,9 @@ function DoctorDashboard() {
                 // style="max-height: none; overflow: visible;"
               >
                 <li>
-                  <a class="dropdown-item" href="#">
-                    My profile
-                  </a>
+                  <Link className="nav-link" to="/viewdoctor">
+                    My Profile
+                  </Link>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">

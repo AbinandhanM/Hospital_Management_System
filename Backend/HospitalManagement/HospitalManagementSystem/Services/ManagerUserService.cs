@@ -38,8 +38,7 @@ namespace HospitalManagementSystem.Services
             string generatedPassword = await _passwordService.GeneratePassword(admin);
             admin.User.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(generatedPassword));
             admin.User.PasswordKey = hmac.Key;
-            admin.User.Role = "Admin";
-            admin.PasswordStatus = "Not Changed";
+            admin.User.Role = "Admin";           
             var userResult = await _userRepo.Add(admin.User);
             var internResult = await _adminRepo.Add(admin);
             if (userResult != null && internResult != null)

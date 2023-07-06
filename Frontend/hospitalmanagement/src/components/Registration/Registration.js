@@ -71,6 +71,7 @@ function RegistrationForm() {
                             type="text"
                             id="form3Example1m"
                             placeholder="Enter Your Name"
+                            required
                             className="form-control form-control-lg"
                             onChange={(event) => {
                               setDoctor({

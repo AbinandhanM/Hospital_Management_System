@@ -18,7 +18,7 @@ function ViewAdmin() {
         headers: {
           accept: "text/plain",
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + JwtToken,
+          Authorization: "Bearer " + JwtToken,
         },
       }
     )

@@ -1,10 +1,10 @@
 import React from "react";
 import "./AdminDashboard.css";
 import { Link, useNavigate } from "react-router-dom";
-import ViewDoctor from "../AdminPages/ViewDoctor";
 
 function AdminDashboard() {
   const navigate = useNavigate();
+
   var logout = () => {
     localStorage.clear();
     navigate("/");
@@ -100,9 +100,9 @@ function AdminDashboard() {
                 // style="max-height: none; overflow: visible;"
               >
                 <li>
-                  <a class="dropdown-item" href="#">
-                    My profile
-                  </a>
+                  <Link className="nav-link" to="/viewadmin">
+                    My Profile
+                  </Link>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">

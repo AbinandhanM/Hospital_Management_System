@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function LoginForm() {
@@ -12,13 +13,25 @@ function LoginForm() {
     userId: 0,
     password: "",
   });
+  // useEffect(() => {
+  //   let ignore = false;
+
+  //   if (!ignore) removingLocalStorage();
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, []);
+
+  // var removingLocalStorage = () => {
+  //   localStorage.clear();
+  // };
+
   var login = () => {
     fetch("http://localhost:5126/api/Hospital/Login", {
       method: "POST",
       headers: {
         accept: "text/plain",
         "Content-Type": "application/json",
-        
       },
       body: JSON.stringify({ ...Login }),
     })
@@ -29,7 +42,6 @@ function LoginForm() {
         localStorage.setItem("token", myData.token);
         console.log(myData);
         if (myData.role === "Patient") {
-          localStorage.setItem("userId", myData.userId);
           navigate("/patientdashboard");
           toast.success("successful");
         } else if (myData.role === "Doctor") {

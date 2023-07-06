@@ -22,7 +22,7 @@ namespace HospitalManagementSystem.Models
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string? EmailId { get; set; }
-        public int? AddedBy { get; set; }
-        public string? PasswordStatus { get; set; }
+      
+     
     }
 }

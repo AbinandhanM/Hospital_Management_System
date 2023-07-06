@@ -31,9 +31,7 @@ namespace HospitalManagementSystem.Migrations
                     AdminId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddedBy = table.Column<int>(type: "int", nullable: true),
-                    PasswordStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

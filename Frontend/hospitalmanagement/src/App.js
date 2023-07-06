@@ -31,9 +31,11 @@ import ViewAllDoctorProtected from "./components/ProtectedRouting/ViewAllDoctorP
 import StatusProtected from "./components/ProtectedRouting/StatusProtected";
 import DeleteDoctorProtected from "./components/ProtectedRouting/DeleteDoctorProtected";
 import emailjs from "@emailjs/browser";
+import Error from "./components/ErrorPage/Error";
 
 function App() {
   var token;
+  var role;
   return (
     <div className="App">
       <ToastContainer />
@@ -51,7 +53,7 @@ function App() {
           <Route
             path="/viewdoctor"
             element={
-              <ViewDoctorProtected token={token}>
+              <ViewDoctorProtected token={token} role={role}>
                 <ViewDoctor />
               </ViewDoctorProtected>
             }
@@ -59,7 +61,7 @@ function App() {
           <Route
             path="/viewpatient"
             element={
-              <ViewPatientProtected token={token}>
+              <ViewPatientProtected token={token} role={role}>
                 <ViewPatient />
               </ViewPatientProtected>
             }
@@ -67,7 +69,7 @@ function App() {
           <Route
             path="/viewadmin"
             element={
-              <ViewAdminProtected token={token}>
+              <ViewAdminProtected token={token} role={role}>
                 <ViewAdmin />
               </ViewAdminProtected>
             }
@@ -75,7 +77,7 @@ function App() {
           <Route
             path="/viewspecialties"
             element={
-              <ViewSpecialtiesProtected token={token}>
+              <ViewSpecialtiesProtected token={token} role={role}>
                 <ViewSpecialties />
               </ViewSpecialtiesProtected>
             }
@@ -83,7 +85,7 @@ function App() {
           <Route
             path="/updatedoctor"
             element={
-              <UpdateDoctorProtected token={token}>
+              <UpdateDoctorProtected token={token} role={role}>
                 <UpdateDoctor />
               </UpdateDoctorProtected>
             }
@@ -91,7 +93,7 @@ function App() {
           <Route
             path="/viewalldoctor"
             element={
-              <ViewAllDoctorProtected token={token}>
+              <ViewAllDoctorProtected token={token} role={role}>
                 <ViewAllDoctor />
               </ViewAllDoctorProtected>
             }
@@ -99,7 +101,7 @@ function App() {
           <Route
             path="/status"
             element={
-              <StatusProtected token={token}>
+              <StatusProtected token={token} role={role}>
                 <Status />
               </StatusProtected>
             }
@@ -107,7 +109,7 @@ function App() {
           <Route
             path="/deletedoctor"
             element={
-              <DeleteDoctorProtected token={token}>
+              <DeleteDoctorProtected token={token} role={role}>
                 <DoctorsDelete />
               </DeleteDoctorProtected>
             }
@@ -116,7 +118,7 @@ function App() {
           <Route
             path="/admindashboard"
             element={
-              <AdminProtected token={token}>
+              <AdminProtected token={token} role={role}>
                 <AdminDashboard />
               </AdminProtected>
             }
@@ -134,11 +136,12 @@ function App() {
           <Route
             path="/doctordashboard"
             element={
-              <DoctorProtected token={token}>
+              <DoctorProtected token={token} role={role}>
                 <DoctorDashboard />
               </DoctorProtected>
             }
           />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
